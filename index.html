@@ -1,0 +1,1970 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>el profe test</title>
+
+<style>
+
+/* =========================
+   CONFIGURACIÓN GENERAL
+========================= */
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+
+    margin:0;
+
+    min-height:100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color:white;
+
+    background:
+
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(233,69,96,.20),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(83,52,131,.25),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(15,52,96,.35),
+            transparent 40%
+        ),
+
+        #090b18;
+
+    overflow:hidden;
+
+    padding:12px;
+}
+
+
+/* =========================
+   FONDO DECORATIVO
+========================= */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    width:500px;
+    height:500px;
+
+    border-radius:50%;
+
+    border:
+        1px solid rgba(255,255,255,.04);
+
+    top:-250px;
+    right:-200px;
+
+    box-shadow:
+        0 0 0 80px rgba(255,255,255,.015),
+        0 0 0 160px rgba(255,255,255,.01);
+
+    pointer-events:none;
+
+}
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    width:400px;
+    height:400px;
+
+    border-radius:50%;
+
+    border:
+        1px solid rgba(233,69,96,.06);
+
+    bottom:-250px;
+    left:-180px;
+
+    pointer-events:none;
+
+}
+
+
+/* =========================
+   CONTENEDOR
+========================= */
+
+.contenedor{
+
+    width:100%;
+
+    max-width:1000px;
+
+    height:calc(100vh - 24px);
+
+    margin:auto;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+
+/* =========================
+   ENCABEZADO
+========================= */
+
+.encabezado{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:
+        4px 10px 10px;
+
+}
+
+
+.logoTitulo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+
+.iconoTitulo{
+
+    width:42px;
+    height:42px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e94560,
+            #533483
+        );
+
+    font-size:21px;
+
+    box-shadow:
+        0 8px 20px
+        rgba(233,69,96,.25);
+
+}
+
+
+.titulo{
+
+    text-align:left;
+
+}
+
+
+.titulo h1{
+
+    margin:0;
+
+    font-size:25px;
+
+    letter-spacing:
+        1px;
+
+}
+
+
+.titulo span{
+
+    color:#858db8;
+
+    font-size:11px;
+
+    letter-spacing:
+        2px;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.ronda{
+
+    background:
+        rgba(255,255,255,.06);
+
+    border:
+        1px solid rgba(255,255,255,.09);
+
+    border-radius:10px;
+
+    padding:
+        7px 13px;
+
+    font-size:13px;
+
+    color:#b9c0e8;
+
+}
+
+#numeroRonda{
+
+    color:white;
+
+    font-weight:bold;
+
+}
+
+
+/* =========================
+   MARCADORES
+========================= */
+
+.marcadores{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:10px;
+
+    margin-bottom:10px;
+
+}
+
+
+.marcador{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.08),
+            rgba(255,255,255,.035)
+        );
+
+    border:
+        1px solid rgba(255,255,255,.09);
+
+    border-radius:14px;
+
+    padding:
+        9px 15px;
+
+    text-align:left;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.15);
+
+}
+
+
+.marcador::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:60px;
+    height:60px;
+
+    border-radius:50%;
+
+    right:-25px;
+    top:-30px;
+
+    background:
+        rgba(255,255,255,.035);
+
+}
+
+
+.marcador small{
+
+    display:block;
+
+    color:#8189b4;
+
+    font-size:10px;
+
+    letter-spacing:
+        1.2px;
+
+    margin-bottom:3px;
+
+}
+
+
+.marcador strong{
+
+    font-size:23px;
+
+}
+
+
+/* =========================
+   ZONA PRINCIPAL
+========================= */
+
+.areaJuego{
+
+    flex:1;
+
+    min-height:0;
+
+    position:relative;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:22px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.075),
+            rgba(255,255,255,.025)
+        );
+
+    border:
+        1px solid rgba(255,255,255,.09);
+
+    box-shadow:
+
+        0 20px 50px
+        rgba(0,0,0,.35),
+
+        inset 0 1px 0
+        rgba(255,255,255,.04);
+
+    overflow:hidden;
+
+}
+
+
+.areaJuego::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:500px;
+    height:180px;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(83,52,131,.18),
+            transparent 70%
+        );
+
+    top:-100px;
+
+    pointer-events:none;
+
+}
+
+
+/* =========================
+   ZONA RULETA
+========================= */
+
+#zonaRuleta{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+
+.instruccion{
+
+    color:#8f97c0;
+
+    font-size:12px;
+
+    margin-bottom:7px;
+
+    letter-spacing:
+        .5px;
+
+}
+
+
+/* =========================
+   FLECHA
+========================= */
+
+#flecha{
+
+    width:0;
+    height:0;
+
+    border-left:
+        15px solid transparent;
+
+    border-right:
+        15px solid transparent;
+
+    border-top:
+        28px solid #ff4d6d;
+
+    margin:
+        0 auto -2px;
+
+    position:relative;
+
+    z-index:10;
+
+    filter:
+        drop-shadow(
+            0 4px 5px
+            rgba(0,0,0,.6)
+        );
+
+}
+
+
+/* =========================
+   RULETA
+========================= */
+
+#ruleta{
+
+    width:230px;
+    height:230px;
+
+    border:
+        9px solid #11162e;
+
+    border-radius:50%;
+
+    transition:
+        transform 4s
+        cubic-bezier(.17,.67,.12,1);
+
+    background:
+
+        conic-gradient(
+
+            #e94560 0deg 45deg,
+
+            #16213e 45deg 90deg,
+
+            #0f3460 90deg 135deg,
+
+            #533483 135deg 180deg,
+
+            #e94560 180deg 225deg,
+
+            #16213e 225deg 270deg,
+
+            #0f3460 270deg 315deg,
+
+            #533483 315deg 360deg
+
+        );
+
+    box-shadow:
+
+        0 0 0 4px
+        rgba(255,255,255,.04),
+
+        0 12px 35px
+        rgba(0,0,0,.5),
+
+        inset 0 0 30px
+        rgba(0,0,0,.25);
+
+}
+
+
+#ruleta::after{
+
+    content:"LOGO";
+
+    position:absolute;
+
+    width:55px;
+    height:55px;
+
+    border-radius:50%;
+
+    background:#10152d;
+
+    border:
+        4px solid rgba(255,255,255,.15);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:11px;
+
+    font-weight:bold;
+
+    letter-spacing:1px;
+
+    color:#c9cef2;
+
+    left:50%;
+
+    top:50%;
+
+    transform:
+        translate(-50%,-50%);
+
+}
+
+
+/* =========================
+   BOTONES
+========================= */
+
+button{
+
+    border:0;
+
+    color:white;
+
+    font-weight:bold;
+
+    letter-spacing:.5px;
+
+    cursor:pointer;
+
+    border-radius:11px;
+
+    padding:
+        11px 25px;
+
+    font-size:14px;
+
+    margin-top:12px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #e94560,
+            #c62e4a
+        );
+
+    box-shadow:
+
+        0 8px 20px
+        rgba(233,69,96,.25);
+
+    transition:
+        transform .2s,
+        box-shadow .2s,
+        opacity .2s;
+
+}
+
+
+button:hover{
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+
+        0 12px 25px
+        rgba(233,69,96,.4);
+
+}
+
+
+button:active{
+
+    transform:
+        scale(.97);
+
+}
+
+
+button:disabled{
+
+    background:#4b4d5a;
+
+    opacity:.6;
+
+    cursor:not-allowed;
+
+    box-shadow:none;
+
+    transform:none;
+
+}
+
+
+/* =========================
+   TIMER
+========================= */
+
+.timerBox{
+
+    position:absolute;
+
+    top:15px;
+
+    left:50%;
+
+    transform:
+        translateX(-50%);
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    z-index:5;
+
+}
+
+
+#timer{
+
+    font-size:36px;
+
+    font-weight:bold;
+
+    line-height:1;
+
+    color:white;
+
+    text-shadow:
+        0 3px 15px
+        rgba(255,255,255,.1);
+
+}
+
+
+.timerTexto{
+
+    color:#6f769e;
+
+    font-size:9px;
+
+    letter-spacing:
+        2px;
+
+    margin-top:4px;
+
+}
+
+
+.timerPeligro{
+
+    color:#ff4d6d !important;
+
+    transform:
+        scale(1.12);
+
+}
+
+
+/* =========================
+   BARRA DE TIEMPO
+========================= */
+
+.barra{
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+
+    height:4px;
+
+    background:
+        rgba(255,255,255,.05);
+
+}
+
+
+#barraTiempo{
+
+    height:100%;
+
+    width:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #e94560,
+            #ff6b81
+        );
+
+    transition:
+        width .05s linear;
+
+}
+
+
+/* =========================
+   IMAGEN DEL LOGO
+========================= */
+
+#imagenLogo{
+
+    max-width:210px;
+    max-height:210px;
+
+    width:auto;
+    height:auto;
+
+    display:none;
+
+    object-fit:contain;
+
+    background:white;
+
+    padding:15px;
+
+    border-radius:17px;
+
+    border:
+        3px solid
+        rgba(255,255,255,.8);
+
+    box-shadow:
+
+        0 15px 40px
+        rgba(0,0,0,.45),
+
+        0 0 30px
+        rgba(83,52,131,.15);
+
+}
+
+
+.logoAnimacion{
+
+    animation:
+        aparecerLogo .45s ease;
+
+}
+
+
+@keyframes aparecerLogo{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+            scale(.7)
+            translateY(10px);
+
+    }
+
+    70%{
+
+        transform:
+            scale(1.04)
+            translateY(0);
+
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:
+            scale(1);
+
+    }
+
+}
+
+
+/* =========================
+   JUEGO
+========================= */
+
+#juego{
+
+    display:none;
+
+    text-align:center;
+
+    margin-top:12px;
+
+    animation:
+        aparecer .3s ease;
+
+}
+
+
+@keyframes aparecer{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(5px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+#inputRespuesta{
+
+    width:290px;
+
+    max-width:80vw;
+
+    padding:
+        11px 15px;
+
+    border-radius:10px;
+
+    border:
+        2px solid
+        #30365b;
+
+    background:
+        #f8f9ff;
+
+    color:#101322;
+
+    font-size:16px;
+
+    text-align:center;
+
+    outline:none;
+
+    transition:
+        border .2s,
+        box-shadow .2s;
+
+}
+
+
+#inputRespuesta:focus{
+
+    border-color:#e94560;
+
+    box-shadow:
+
+        0 0 0 4px
+        rgba(233,69,96,.12);
+
+}
+
+
+#respuesta{
+
+    min-height:24px;
+
+    margin-top:7px;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+}
+
+
+.correcto{
+
+    color:#38d996;
+
+}
+
+
+.incorrecto{
+
+    color:#ff687f;
+
+}
+
+
+/* =========================
+   PIE
+========================= */
+
+.pie{
+
+    text-align:center;
+
+    padding:
+        8px 0 2px;
+
+    color:#555c80;
+
+    font-size:10px;
+
+}
+
+
+/* =========================
+   MÓVIL
+========================= */
+
+@media(max-width:600px){
+
+    body{
+
+        padding:6px;
+
+    }
+
+
+    .contenedor{
+
+        height:
+            calc(100vh - 12px);
+
+    }
+
+
+    .encabezado{
+
+        padding:
+            2px 4px 7px;
+
+    }
+
+
+    .iconoTitulo{
+
+        width:36px;
+        height:36px;
+
+    }
+
+
+    .titulo h1{
+
+        font-size:20px;
+
+    }
+
+
+    .titulo span{
+
+        font-size:9px;
+
+    }
+
+
+    .ronda{
+
+        font-size:10px;
+
+        padding:
+            6px 9px;
+
+    }
+
+
+    .marcadores{
+
+        gap:6px;
+
+        margin-bottom:6px;
+
+    }
+
+
+    .marcador{
+
+        padding:
+            7px 9px;
+
+    }
+
+
+    .marcador strong{
+
+        font-size:18px;
+
+    }
+
+
+    #ruleta{
+
+        width:190px;
+        height:190px;
+
+    }
+
+
+    #imagenLogo{
+
+        max-width:170px;
+        max-height:170px;
+
+        padding:10px;
+
+    }
+
+
+    .areaJuego{
+
+        border-radius:17px;
+
+    }
+
+
+    #inputRespuesta{
+
+        width:260px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="contenedor">
+
+
+    <!-- ENCABEZADO -->
+
+    <div class="encabezado">
+
+        <div class="logoTitulo">
+
+            <div class="iconoTitulo">
+                ★
+            </div>
+
+            <div class="titulo">
+
+                <h1>EL PROFE TEST</h1>
+
+                <span>Trivia de marcas</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="ronda">
+
+            LOGO
+
+            <span id="numeroRonda">
+                1 / 100
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- MARCADORES -->
+
+    <div class="marcadores">
+
+        <div class="marcador">
+
+            <small>
+                PUNTOS
+            </small>
+
+            <strong id="puntaje">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="marcador">
+
+            <small>
+                ACIERTOS
+            </small>
+
+            <strong id="aciertos">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="marcador">
+
+            <small>
+                ERRORES
+            </small>
+
+            <strong id="errores">
+                0
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- ÁREA DEL JUEGO -->
+
+    <div class="areaJuego">
+
+
+        <!-- BARRA DE TIEMPO -->
+
+        <div class="barra">
+
+            <div id="barraTiempo"></div>
+
+        </div>
+
+
+        <!-- TIMER -->
+
+        <div class="timerBox">
+
+            <div id="timer">
+                10
+            </div>
+
+            <div class="timerTexto">
+                SEGUNDOS
+            </div>
+
+        </div>
+
+
+        <!-- RULETA -->
+
+        <div id="zonaRuleta">
+
+            <div class="instruccion">
+
+                Gira la ruleta para comenzar
+
+            </div>
+
+
+            <div id="flecha"></div>
+
+
+            <div id="ruleta"></div>
+
+
+            <button
+                id="btnGirar"
+                onclick="girarRuleta()">
+
+                GIRAR RULETA
+
+            </button>
+
+        </div>
+
+
+        <!-- LOGO -->
+
+        <img
+            id="imagenLogo"
+            src=""
+            alt="Logo">
+
+
+        <!-- RESPUESTA -->
+
+        <div id="juego">
+
+            <input
+                type="text"
+                id="inputRespuesta"
+                placeholder="¿Qué marca es?"
+                autocomplete="off">
+
+
+            <br>
+
+
+            <button
+                id="btnAdivinar"
+                onclick="verificar()"
+                disabled>
+
+                ADIVINAR
+
+            </button>
+
+
+            <div id="respuesta"></div>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="pie">
+
+        Reconoce la marca antes de que se acabe el tiempo
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+
+/* =====================================================
+   LOGOS
+===================================================== */
+
+const LOGOS = [
+
+    {archivo:"logos/adidas.png",nombre:"adidas"},
+    {archivo:"logos/amazon.png",nombre:"amazon"},
+    {archivo:"logos/android.png",nombre:"android"},
+    {archivo:"logos/apple.png",nombre:"apple,manzana"},
+    {archivo:"logos/banorte.png",nombre:"banorte"},
+    {archivo:"logos/bimbo.png",nombre:"bimbo"},
+    {archivo:"logos/burguerking.png",nombre:"burger king,burguer king,burgerking"},
+    {archivo:"logos/chrome.png",nombre:"chrome,google chrome"},
+    {archivo:"logos/cocacola.png",nombre:"coca cola,cocacola,coca-cola"},
+    {archivo:"logos/correo.png",nombre:"correo,gmail"},
+    {archivo:"logos/dell.png",nombre:"dell"},
+    {archivo:"logos/drpepper.png",nombre:"dr pepper,drpepper, drpeper dr peper"},
+    {archivo:"logos/ebay.png",nombre:"ebay"},
+    {archivo:"logos/facebook.png",nombre:"facebook,fb"},
+    {archivo:"logos/femsa.png",nombre:"femsa"},
+    {archivo:"logos/google.png",nombre:"google"},
+    {archivo:"logos/inbursa.png",nombre:"inbursa"},
+    {archivo:"logos/instagram.png",nombre:"instagram, ig"},
+    {archivo:"logos/kia.png",nombre:"kia"},
+    {archivo:"logos/lacoste.png",nombre:"lacoste"},
+    {archivo:"logos/liverpool.png",nombre:"liverpool"},
+    {archivo:"logos/marinela.png",nombre:"marinela"},
+    {archivo:"logos/nescafe.png",nombre:"nescafe,nescafé"},
+    {archivo:"logos/nvidia.png",nombre:"nvidia"},
+    {archivo:"logos/pinterest.png",nombre:"pinterest"},
+    {archivo:"logos/redbull.png",nombre:"red bull,redbull"},
+    {archivo:"logos/samsung.png",nombre:"samsung"},
+    {archivo:"logos/starbucks.png",nombre:"starbucks"},
+    {archivo:"logos/telcel.png",nombre:"telcel"},
+    {archivo:"logos/tesla.png",nombre:"tesla"},
+    {archivo:"logos/toyota.png",nombre:"toyota"},
+    {archivo:"logos/twiter.png",nombre:"twitter,twiter"},
+    {archivo:"logos/volvo.png",nombre:"volvo"},
+    {archivo:"logos/xbox.png",nombre:"xbox"},
+
+    {archivo:"logos/honda.png",nombre:"honda"},
+    {archivo:"logos/barbie.png",nombre:"barbie"},
+    {archivo:"logos/wikipedia.png",nombre:"wikipedia"},
+    {archivo:"logos/visa.png",nombre:"visa"},
+    {archivo:"logos/nintendo.png",nombre:"nintendo"},
+    {archivo:"logos/panasonic.png",nombre:"panasonic"},
+    {archivo:"logos/nasa.png",nombre:"nasa"},
+    {archivo:"logos/windows.png",nombre:"windows"},
+    {archivo:"logos/nivea.png",nombre:"nivea"},
+    {archivo:"logos/converse.png",nombre:"converse"},
+    {archivo:"logos/costco.png",nombre:"costco"},
+    {archivo:"logos/purina.png",nombre:"purina"},
+    {archivo:"logos/pringles.png",nombre:"pringles"},
+    {archivo:"logos/chanel.png",nombre:"chanel"},
+    {archivo:"logos/oreo.png",nombre:"oreo"},
+    {archivo:"logos/rexona.png",nombre:"rexona"},
+    {archivo:"logos/cosmopolitan.png",nombre:"cosmopolitan"},
+    {archivo:"logos/nba.png",nombre:"nba"},
+    {archivo:"logos/motorola.png",nombre:"motorola"},
+    {archivo:"logos/uber.png",nombre:"uber"},
+    {archivo:"logos/always.png",nombre:"always"},
+    {archivo:"logos/dvd.png",nombre:"dvd"},
+    {archivo:"logos/unicef.png",nombre:"unicef"},
+    {archivo:"logos/gatorade.png",nombre:"gatorade"},
+    {archivo:"logos/swarovski.png",nombre:"swarovski"},
+    {archivo:"logos/duracell.png",nombre:"duracell"},
+    {archivo:"logos/umbro.png",nombre:"umbro"},
+    {archivo:"logos/pirelli.png",nombre:"pirelli"},
+    {archivo:"logos/walkman.png",nombre:"walkman"},
+    {archivo:"logos/mazda.png",nombre:"mazda"},
+    {archivo:"logos/zippo.png",nombre:"zippo"},
+    {archivo:"logos/renault.png",nombre:"renault"},
+    {archivo:"logos/mastercard.png",nombre:"mastercard,master card"},
+    {archivo:"logos/messenger.png",nombre:"messenger,facebook messenger"},
+    {archivo:"logos/playstation.png",nombre:"playstation,play station"},
+    {archivo:"logos/monopoly.png",nombre:"monopoly"},
+    {archivo:"logos/bentley.png",nombre:"bentley"},
+    {archivo:"logos/prada.png",nombre:"prada"},
+    {archivo:"logos/tacobell.png",nombre:"taco bell,tacobell"},
+    {archivo:"logos/dreamworks.png",nombre:"dreamworks,dream works"},
+    {archivo:"logos/asus.png",nombre:"asus"},
+    {archivo:"logos/maybelline.png",nombre:"maybelline"},
+    {archivo:"logos/spotify.png",nombre:"spotify"},
+    {archivo:"logos/goodyear.png",nombre:"goodyear"},
+    {archivo:"logos/nfl.png",nombre:"nfl"},
+    {archivo:"logos/whiskas.png",nombre:"whiskas"},
+    {archivo:"logos/lego.png",nombre:"lego"},
+    {archivo:"logos/safari.png",nombre:"safari"},
+    {archivo:"logos/stanley.png",nombre:"stanley"},
+    {archivo:"logos/vogue.png",nombre:"vogue"},
+    {archivo:"logos/snapchat.png",nombre:"snapchat"},
+    {archivo:"logos/gerber.png",nombre:"gerber"},
+    {archivo:"logos/nutella.png",nombre:"nutella"},
+    {archivo:"logos/seat.png",nombre:"seat"},
+    {archivo:"logos/twitch.png",nombre:"twitch"},
+    {archivo:"logos/marlboro.png",nombre:"marlboro"},
+    {archivo:"logos/zara.png",nombre:"zara"},
+    {archivo:"logos/kinder.png",nombre:"kinder"},
+    {archivo:"logos/rolex.png",nombre:"rolex"},
+    {archivo:"logos/emirates.png",nombre:"emirates"},
+    {archivo:"logos/espn.png",nombre:"espn"},
+    {archivo:"logos/versace.png",nombre:"versace"},
+    {archivo:"logos/bic.png",nombre:"bic"},
+    {archivo:"logos/hsbc.png",nombre:"hsbc"},
+    {archivo:"logos/fila.png",nombre:"fila"},
+    {archivo:"logos/dior.png",nombre:"dior"}
+
+];
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+let logoActual = null;
+
+let puntos = 0;
+
+let aciertos = 0;
+
+let errores = 0;
+
+let tiempo = 10;
+
+let intervalo = null;
+
+let girando = false;
+
+let logosUsados = [];
+
+let puedeResponder = false;
+
+let tiempoInicio = 0;
+
+let ronda = 0;
+
+
+/* =====================================================
+   GIRAR RULETA
+===================================================== */
+
+function girarRuleta(){
+
+    if(girando){
+        return;
+    }
+
+
+    if(LOGOS.length === logosUsados.length){
+
+        logosUsados = [];
+
+    }
+
+
+    girando = true;
+
+
+    document.getElementById("btnGirar")
+        .disabled = true;
+
+
+    detenerTimer();
+
+
+    document.getElementById("respuesta")
+        .innerHTML = "";
+
+
+    document.getElementById("inputRespuesta")
+        .value = "";
+
+
+    document.getElementById("imagenLogo")
+        .style.display = "none";
+
+
+    document.getElementById("juego")
+        .style.display = "none";
+
+
+    document.getElementById("zonaRuleta")
+        .style.display = "flex";
+
+
+    const giro =
+        1800 +
+        Math.random() * 1800;
+
+
+    document.getElementById("ruleta")
+        .style.transform =
+        `rotate(${giro}deg)`;
+
+
+    setTimeout(()=>{
+
+        mostrarLogo();
+
+        girando = false;
+
+    },4000);
+
+}
+
+
+/* =====================================================
+   MOSTRAR LOGO
+===================================================== */
+
+function mostrarLogo(){
+
+    const disponibles =
+        LOGOS.filter(
+            (_,i)=>
+            !logosUsados.includes(i)
+        );
+
+
+    logoActual =
+        disponibles[
+            Math.floor(
+                Math.random() *
+                disponibles.length
+            )
+        ];
+
+
+    logosUsados.push(
+        LOGOS.indexOf(logoActual)
+    );
+
+
+    ronda++;
+
+
+    document.getElementById("numeroRonda")
+        .innerText =
+        `${ronda} / ${LOGOS.length}`;
+
+
+    const imagen =
+        document.getElementById("imagenLogo");
+
+
+    const input =
+        document.getElementById("inputRespuesta");
+
+
+    /* LIMPIAR RESPUESTA ANTERIOR */
+
+    input.value = "";
+
+
+    document.getElementById("respuesta")
+        .innerHTML = "";
+
+
+    /* MOSTRAR NUEVO LOGO */
+
+    imagen.src =
+        logoActual.archivo;
+
+
+    imagen.style.display = "block";
+
+
+    imagen.classList.remove(
+        "logoAnimacion"
+    );
+
+
+    void imagen.offsetWidth;
+
+
+    imagen.classList.add(
+        "logoAnimacion"
+    );
+
+
+    document.getElementById("zonaRuleta")
+        .style.display = "none";
+
+
+    document.getElementById("juego")
+        .style.display = "block";
+
+
+    input.disabled = false;
+
+
+    document.getElementById("btnAdivinar")
+        .disabled = false;
+
+
+    puedeResponder = true;
+
+
+    /*
+       EL TIEMPO EMPIEZA
+       INMEDIATAMENTE
+    */
+
+    iniciarTimer();
+
+
+    input.focus();
+
+}
+
+
+/* =====================================================
+   INICIAR TIMER
+===================================================== */
+
+function iniciarTimer(){
+
+    detenerTimer();
+
+
+    tiempoInicio = Date.now();
+
+
+    tiempo = 10;
+
+
+    document.getElementById("timer")
+        .innerText = "10";
+
+
+    document.getElementById("timer")
+        .classList.remove(
+            "timerPeligro"
+        );
+
+
+    document.getElementById("barraTiempo")
+        .style.width = "100%";
+
+
+    intervalo = setInterval(()=>{
+
+
+        const transcurrido =
+            (Date.now() - tiempoInicio)
+            / 1000;
+
+
+        const restante =
+            Math.max(
+                0,
+                10 - transcurrido
+            );
+
+
+        tiempo =
+            Math.ceil(restante);
+
+
+        document.getElementById("timer")
+            .innerText = tiempo;
+
+
+        document.getElementById("barraTiempo")
+            .style.width =
+            ((restante / 10) * 100) + "%";
+
+
+        if(tiempo <= 4){
+
+            document.getElementById("timer")
+                .classList.add(
+                    "timerPeligro"
+                );
+
+        }
+
+
+        if(restante <= 0){
+
+            detenerTimer();
+
+
+            tiempo = 0;
+
+
+            puedeResponder = false;
+
+
+            document.getElementById("btnAdivinar")
+                .disabled = true;
+
+
+            tiempoFuera();
+
+        }
+
+
+    },50);
+
+}
+
+
+/* =====================================================
+   DETENER TIMER
+===================================================== */
+
+function detenerTimer(){
+
+    if(intervalo !== null){
+
+        clearInterval(intervalo);
+
+        intervalo = null;
+
+    }
+
+}
+
+
+/* =====================================================
+   VERIFICAR RESPUESTA
+===================================================== */
+
+function verificar(){
+
+    if(!puedeResponder){
+        return;
+    }
+
+
+    const transcurrido =
+        (Date.now() - tiempoInicio)
+        / 1000;
+
+
+    const restante =
+        Math.max(
+            0,
+            10 - transcurrido
+        );
+
+
+    const segundos =
+        Math.ceil(restante);
+
+
+    detenerTimer();
+
+
+    puedeResponder = false;
+
+
+    document.getElementById("btnAdivinar")
+        .disabled = true;
+
+
+    const respuesta =
+        document.getElementById("inputRespuesta")
+        .value
+        .toLowerCase()
+        .trim()
+        .replace(/\s+/g," ");
+
+
+    const nombresValidos =
+        logoActual.nombre.split(",");
+
+
+    const esCorrecto =
+        nombresValidos.some(
+            nombre =>
+            respuesta ===
+            nombre.trim()
+        );
+
+
+    if(esCorrecto){
+
+        aciertos++;
+
+
+        /*
+           10 A 5 SEGUNDOS = 10 PUNTOS
+           4 A 0 SEGUNDOS = 0 PUNTOS
+        */
+
+        let puntosGanados = 0;
+
+
+        if(segundos >= 5){
+
+            puntosGanados = 10;
+
+        }
+
+
+        puntos += puntosGanados;
+
+
+        document.getElementById("respuesta")
+            .innerHTML =
+
+            `<span class="correcto">
+                ✓ ¡Correcto! +${puntosGanados} puntos
+            </span>`;
+
+    }
+
+    else{
+
+        errores++;
+
+
+        const correcta =
+            logoActual.nombre
+            .split(",")[0]
+            .toUpperCase();
+
+
+        document.getElementById("respuesta")
+            .innerHTML =
+
+            `<span class="incorrecto">
+                ✕ Era: ${correcta}
+            </span>`;
+
+    }
+
+
+    actualizarMarcadores();
+
+
+    setTimeout(
+        nuevaRonda,
+        2200
+    );
+
+}
+
+
+/* =====================================================
+   TIEMPO AGOTADO
+===================================================== */
+
+function tiempoFuera(){
+
+    errores++;
+
+
+    const correcta =
+        logoActual.nombre
+        .split(",")[0]
+        .toUpperCase();
+
+
+    document.getElementById("respuesta")
+        .innerHTML =
+
+        `<span class="incorrecto">
+            ✕ ¡Tiempo! Era: ${correcta}
+        </span>`;
+
+
+    actualizarMarcadores();
+
+
+    setTimeout(
+        nuevaRonda,
+        2200
+    );
+
+}
+
+
+/* =====================================================
+   ACTUALIZAR MARCADORES
+===================================================== */
+
+function actualizarMarcadores(){
+
+    document.getElementById("puntaje")
+        .innerText = puntos;
+
+
+    document.getElementById("aciertos")
+        .innerText = aciertos;
+
+
+    document.getElementById("errores")
+        .innerText = errores;
+
+}
+
+
+/* =====================================================
+   NUEVA RONDA
+===================================================== */
+
+function nuevaRonda(){
+
+    detenerTimer();
+
+
+    puedeResponder = false;
+
+
+    /*
+       LIMPIAR EL TEXTO
+       DE LA RONDA ANTERIOR
+    */
+
+    document.getElementById("inputRespuesta")
+        .value = "";
+
+
+    document.getElementById("respuesta")
+        .innerHTML = "";
+
+
+    document.getElementById("imagenLogo")
+        .style.display = "none";
+
+
+    document.getElementById("juego")
+        .style.display = "none";
+
+
+    document.getElementById("zonaRuleta")
+        .style.display = "flex";
+
+
+    document.getElementById("timer")
+        .innerText = "10";
+
+
+    document.getElementById("timer")
+        .classList.remove(
+            "timerPeligro"
+        );
+
+
+    document.getElementById("barraTiempo")
+        .style.width = "100%";
+
+
+    document.getElementById("btnAdivinar")
+        .disabled = true;
+
+
+    document.getElementById("btnGirar")
+        .disabled = false;
+
+}
+
+
+/* =====================================================
+   ENTER PARA RESPONDER
+===================================================== */
+
+document.getElementById("inputRespuesta")
+    .addEventListener(
+        "keyup",
+        e => {
+
+            if(e.key === "Enter"){
+
+                verificar();
+
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+
+</html>
